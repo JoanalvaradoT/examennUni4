@@ -44,7 +44,7 @@
         <div class="col-md-6">
           <div class="card">
             <h1 class="text-center">Light able</h1>
-            <form method="post" id="formulario" action="/unidad4/examen/tpm/dashboard/index.php">
+            <form method="post" id="formulario" action="/unidad4/examen/app/AuthController.php">
               <div class="mb-4">
                 <label for="email" class="form-label">Correo Electronico</label>
                 <input type="email" class="form-control shadow-sm" id="email" name="email" required />
