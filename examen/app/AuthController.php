@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ini_set('display_startup_errors', 1);
         error_reporting(E_ALL);
 
-        header("Location: /unidad4/examen/index.php");
+        header("Location: " . BASE_URL . "index.php");
         exit();
     }
     $response = login($email, $password);
@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ini_set('display_startup_errors', 1);
         error_reporting(E_ALL);
 
-        header("Location: /unidad4/examen/tpm/dashboard/index.php");
+        header("Location: " . BASE_URL . "tpm/dashboard/index.php");
         exit();
     } else {
         $_SESSION['error'] = $response['message'] ?? "Credenciales incorrectas.";
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ini_set('display_startup_errors', 1);
         error_reporting(E_ALL);
 
-        header("Location: /unidad4/examen/index.php");
+        header("Location: " . BASE_URL . "index.php");
         exit();
     }
 }

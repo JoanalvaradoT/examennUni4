@@ -1,3 +1,8 @@
+<?php
+define('BASE_URL', '/');
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,7 +57,7 @@
       <div class="col-md-6">
         <div class="card">
           <h1 class="text-center">Light able</h1>
-          <form method="post" id="formulario" action="app/AuthController.php">
+          <form method="post" id="formulario" action="<?php echo BASE_URL; ?>app/AuthController.php">
             <div class="mb-4">
               <label for="email" class="form-label">Correo Electronico</label>
               <input type="email" class="form-control shadow-sm" id="email" name="email" required />

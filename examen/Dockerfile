@@ -7,6 +7,8 @@ WORKDIR /app
 # Copia todos los archivos al contenedor
 COPY . /app
 
-# Comando para iniciar el servidor PHP
-CMD ["php", "-S", "0.0.0.0:10000", "-t", "."]
+# Expone el puerto para Render
+EXPOSE 10000
 
+# Comando para iniciar el servidor PHP
+CMD ["php", "-S", "0.0.0.0:10000", "-t", "/app"]
