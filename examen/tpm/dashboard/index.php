@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!doctype html>
 <html lang="en">
   <!-- [Head] start -->
@@ -51,7 +55,7 @@
 <nav class="pc-sidebar">
   <div class="navbar-wrapper">
     <div class="m-header">
-      <a href="index.html" class="b-brand text-primary">
+      <a href="index.php" class="b-brand text-primary">
         <!-- ========   Change your logo from here   ============ -->
         <img src="../assets/images/logo-dark.svg" alt="logo image" class="logo-lg" />
         <span class="badge bg-brand-color-2 rounded-pill ms-2 theme-version">v1.2.0</span>
@@ -143,25 +147,7 @@
         </li>
 
       
-        <li class="pc-item pc-hasmenu">
-          <a href="#!" class="pc-link">
-            <span class="pc-micon">
-              <i class="ph-duotone ph-shield-checkered"></i>
-            </span>
-            <span class="pc-mtext">Authentication</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span
-          ></a>
-          <ul class="pc-submenu">
-            <li class="pc-item pc-hasmenu">
-              <a href="#!" class="pc-link"
-                >Authentication 1<span class="pc-arrow"><i data-feather="chevron-right"></i></span
-              ></a>
-              <ul class="pc-submenu">
-                <li class="pc-item"><a class="pc-link" target="_blank" href="../pages/login-v1.html">Login</a></li>
-              </ul>
-            </li>
-            
-          </ul>
-        </li>
+       
       </ul>
      
     </div>
@@ -178,7 +164,6 @@
                   <div class="flex-grow-1 me-2">
                     <h6 class="mb-0">
                       <?php
-                        session_start();
                         echo isset($_SESSION['user']) ? htmlspecialchars($_SESSION['user']) : "Invitado";
                       ?>
                     </h6>
@@ -329,7 +314,6 @@
                   <div class="flex-grow-1 mx-3">
                     <h5 class="mb-0">
                       <?php
-                        session_start();
                         // Mostrar nombre o correo según disponibilidad
                         echo isset($_SESSION['name']) ? htmlspecialchars($_SESSION['name']) : "Usuario";
                       ?>
@@ -403,7 +387,7 @@
             <div class="row align-items-center">
               <div class="col-md-12">
                 <ul class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                  <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                   <li class="breadcrumb-item"><a href="javascript: void(0)">Dashboard</a></li>
                   <li class="breadcrumb-item" aria-current="page">Home</li>
                 </ul>

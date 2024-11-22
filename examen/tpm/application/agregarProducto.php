@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require '../../app/ProductoController.php';
 $productoController = new ProductoController();
 $marcas = $productoController->obtenerMarcas();
@@ -79,7 +81,7 @@ $marcas = $productoController->obtenerMarcas();
   <nav class="pc-sidebar">
     <div class="navbar-wrapper">
       <div class="m-header">
-        <a href="../dashboard/index.html" class="b-brand text-primary">
+        <a href="../dashboard/index.php" class="b-brand text-primary">
           <!-- ========   Change your logo from here   ============ -->
           <img src="../assets/images/logo-dark.svg" alt="logo image" class="logo-lg" />
           <span class="badge bg-brand-color-2 rounded-pill ms-2 theme-version">v1.2.0</span>
@@ -191,7 +193,6 @@ $marcas = $productoController->obtenerMarcas();
                     <div class="flex-grow-1 me-2">
                       <h6 class="mb-0">
                         <?php
-                        session_start();
                         echo isset($_SESSION['user']) ? htmlspecialchars($_SESSION['user']) : "Invitado";
                         ?>
                       </h6>
@@ -336,8 +337,17 @@ $marcas = $productoController->obtenerMarcas();
                             class="wid-50 rounded-circle" />
                         </div>
                         <div class="flex-grow-1 mx-3">
-                          <h5 class="mb-0">Carson Darrin</h5>
-                          <a class="link-primary" href="mailto:carson.darrin@company.io">carson.darrin@company.io</a>
+                          <h5 class="mb-0">
+                            <?php
+                            echo isset($_SESSION['name']) ? htmlspecialchars($_SESSION['name']) : "Usuario";
+                            ?>
+                          </h5>
+                          <a class="link-primary"
+                            href="mailto:<?php echo isset($_SESSION['user']) ? htmlspecialchars($_SESSION['user']) : '#'; ?>">
+                            <?php
+                            echo isset($_SESSION['user']) ? htmlspecialchars($_SESSION['user']) : "email@ejemplo.com";
+                            ?>
+                          </a>
                         </div>
                         <span class="badge bg-primary">PRO</span>
                       </div>
