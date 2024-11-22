@@ -1,17 +1,17 @@
-# Activar el manejo de errores
+# Activar el motor de reescritura
 RewriteEngine On
 
-# Redirigir la raíz hacia index.php en la carpeta /unidad4/examen
-RewriteCond %{REQUEST_URI} ^/unidad4/examen/$ [NC]
-RewriteRule ^ unidad4/examen/index.php [L]
-
-# Redirigir solicitudes al AuthController.php
+# Redirigir a AuthController.php para manejar el inicio de sesión
 RewriteCond %{REQUEST_URI} ^/unidad4/examen/app/AuthController\.php$ [NC]
 RewriteRule ^ unidad4/examen/app/AuthController.php [L]
 
-# Manejar el acceso al dashboard
+# Redirigir la raíz de /unidad4/examen/ a index.php
+RewriteCond %{REQUEST_URI} ^/unidad4/examen/$ [NC]
+RewriteRule ^ unidad4/examen/index.php [L]
+
+# Redirigir al dashboard ubicado dos carpetas más abajo
 RewriteCond %{REQUEST_URI} ^/unidad4/examen/tpm/dashboard/$ [NC]
 RewriteRule ^ unidad4/examen/tpm/dashboard/index.php [L]
 
-# Manejar errores comunes
+# Manejo de errores: redirigir errores 404 a la página principal
 ErrorDocument 404 /unidad4/examen/index.php
