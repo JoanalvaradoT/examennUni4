@@ -1,17 +1,12 @@
 <?php
 session_start();
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+require_once __DIR__ . '/../config.php';
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
     if (empty($email) || empty($password)) {
         $_SESSION['error'] = "Por favor, complete todos los campos.";
-        ini_set('display_errors', 1);
-        ini_set('display_startup_errors', 1);
-        error_reporting(E_ALL);
-
         header("Location: " . BASE_URL . "index.php");
         exit();
     }
@@ -19,34 +14,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($response['code']) && $response['code'] == 2) {
         $_SESSION['user'] = $response['data']['email'];
         $_SESSION['token'] = $response['data']['token'];
-        ini_set('display_errors', 1);
-        ini_set('display_startup_errors', 1);
-        error_reporting(E_ALL);
-
         header("Location: " . BASE_URL . "tpm/dashboard/index.php");
         exit();
     } else {
         $_SESSION['error'] = $response['message'] ?? "Credenciales incorrectas.";
-        ini_set('display_errors', 1);
-        ini_set('display_startup_errors', 1);
-        error_reporting(E_ALL);
-
         header("Location: " . BASE_URL . "index.php");
         exit();
     }
 }
+
 function login($email, $password)
 {
     $curl = curl_init();
     curl_setopt_array($curl, array(
         CURLOPT_URL => 'https://crud.jonathansoto.mx/api/login',
         CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => '',
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 0,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => 'POST',
         CURLOPT_POSTFIELDS => http_build_query(array(
             'email' => $email,
             'password' => $password
@@ -59,3 +41,4 @@ function login($email, $password)
     curl_close($curl);
     return json_decode($response, true);
 }
+?>
