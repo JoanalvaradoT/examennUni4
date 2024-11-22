@@ -1,0 +1,7 @@
+{
+    "rewrites": [
+      { "source": "/", "destination": "/index.php" },
+      { "source": "/dashboard", "destination": "/dashboard/index.php" }
+    ]
+  }
+  
