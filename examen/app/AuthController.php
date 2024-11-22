@@ -8,22 +8,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'] ?? '';
     if (empty($email) || empty($password)) {
         $_SESSION['error'] = "Por favor, complete todos los campos.";
+        ini_set('display_errors', 1);
+        ini_set('display_startup_errors', 1);
+        error_reporting(E_ALL);
+
         header("Location: /unidad4/examen/index.php");
         exit();
     }
     $response = login($email, $password);
     if (isset($response['code']) && $response['code'] == 2) {
-        $_SESSION['user'] = $response['data']['email'];  
-        $_SESSION['token'] = $response['data']['token'];  
-        header("Location: /unidad4/examen/tpm/dashboard/index.php");  
-        exit();  
+        $_SESSION['user'] = $response['data']['email'];
+        $_SESSION['token'] = $response['data']['token'];
+        ini_set('display_errors', 1);
+        ini_set('display_startup_errors', 1);
+        error_reporting(E_ALL);
+
+        header("Location: /unidad4/examen/tpm/dashboard/index.php");
+        exit();
     } else {
         $_SESSION['error'] = $response['message'] ?? "Credenciales incorrectas.";
-        header("Location: /unidad4/examen/index.php");  
+        ini_set('display_errors', 1);
+        ini_set('display_startup_errors', 1);
+        error_reporting(E_ALL);
+
+        header("Location: /unidad4/examen/index.php");
         exit();
     }
 }
-function login($email, $password) {
+function login($email, $password)
+{
     $curl = curl_init();
     curl_setopt_array($curl, array(
         CURLOPT_URL => 'https://crud.jonathansoto.mx/api/login',
@@ -44,5 +57,5 @@ function login($email, $password) {
         echo 'Error cURL: ' . curl_error($curl);
     }
     curl_close($curl);
-    return json_decode($response, true);  
+    return json_decode($response, true);
 }
